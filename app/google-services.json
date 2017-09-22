@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "275442346302",
+    "firebase_url": "https://slamit-5a7cc.firebaseio.com",
+    "project_id": "slamit-5a7cc",
+    "storage_bucket": "slamit-5a7cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275442346302:android:e2c366f58da4db5d",
+        "android_client_info": {
+          "package_name": "com.example.bhargavbv.ureon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275442346302-g9v1g3sjjjsunitt0bs9s2h19gf4doht.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bhargavbv.ureon",
+            "certificate_hash": "fd75bcf4966a44f727ac28cedef0ae0a61e4859b"
+          }
+        },
+        {
+          "client_id": "275442346302-dt6q63668p5jhen8fddef00jojkvch53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDjPsX9-bq_f-J6V9yUb_gx15DkzY1uHA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275442346302-dt6q63668p5jhen8fddef00jojkvch53.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
