@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,12 +15,19 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/photo"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/signout"
-        android:text="LogOut"/>
+        android:id="@+id/photo"
+        android:layout_below="@+id/name"/>
 
 
-</LinearLayout>
+
+    <com.hitomi.cmlibrary.CircleMenu
+        android:id="@+id/circle_menu"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="380dp"
+        android:layout_centerHorizontal="true"
+        >
+
+    </com.hitomi.cmlibrary.CircleMenu>
+
+</RelativeLayout>

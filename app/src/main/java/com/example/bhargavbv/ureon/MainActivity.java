@@ -3,6 +3,7 @@ package com.example.bhargavbv.ureon;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
@@ -14,6 +15,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.hitomi.cmlibrary.CircleMenu;
+import com.hitomi.cmlibrary.OnMenuSelectedListener;
+import com.hitomi.cmlibrary.OnMenuStatusChangeListener;
+
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -28,6 +33,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.hitomi.cmlibrary.CircleMenu;
+import com.hitomi.cmlibrary.OnMenuSelectedListener;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,12 +57,66 @@ public class MainActivity extends AppCompatActivity {
     String name1;
     String photo1;
 
+    CircleMenu circleMenu;
+
     private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        circleMenu = (CircleMenu) findViewById(R.id.circle_menu);
+
+        circleMenu.setMainMenu(Color.parseColor("#CDCDCD"), R.mipmap.add, R.mipmap.remove);
+        circleMenu.addSubMenu(Color.parseColor("#258CFF"), R.mipmap.profile)
+                .addSubMenu(Color.parseColor("#30A400"), R.mipmap.upload)
+                .addSubMenu(Color.parseColor("#30A400"), R.mipmap.points)
+                .addSubMenu(Color.parseColor("#FF4B32"), R.mipmap.challenge)
+                .addSubMenu(Color.parseColor("#8A39FF"), R.mipmap.settings)
+                .addSubMenu(Color.parseColor("#FF6A00"), R.mipmap.notification)
+                .addSubMenu(Color.parseColor("#FF6A00"), R.mipmap.discover);
+
+
+        circleMenu.setOnMenuSelectedListener(new OnMenuSelectedListener() {
+
+                                                 @Override
+                                                 public void onMenuSelected(int index) {
+                                                     switch (index) {
+                                                         case 0:
+                                                             startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                                                             break;
+                                                         case 1:
+                                                             Toast.makeText(MainActivity.this, "upload button Clicked", Toast.LENGTH_SHORT).show();
+                                                             break;
+                                                         case 2:
+                                                             Toast.makeText(MainActivity.this, "challenge button Clciked", Toast.LENGTH_SHORT).show();
+                                                             break;
+                                                         case 3:
+                                                             Toast.makeText(MainActivity.this, "Setting button Clcked", Toast.LENGTH_SHORT).show();
+                                                             //startActivity(new Intent(MainActivity.this, ThankYouActivity.class));
+                                                             break;
+                                                         case 4:
+                                                             Toast.makeText(MainActivity.this, "notify button Clicked", Toast.LENGTH_SHORT).show();
+                                                             break;
+                                                     }
+                                                 }
+                                             }
+
+        );
+
+        circleMenu.setOnMenuStatusChangeListener(new OnMenuStatusChangeListener() {
+
+                                                     @Override
+                                                     public void onMenuOpened() {
+
+                                                     }
+
+                                                     @Override
+                                                     public void onMenuClosed() {
+
+                                                     }
+                                                 }
+        );
 
 
         name = (TextView)findViewById(R.id.name);
@@ -119,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                 .build();
 
-        signout = (Button)findViewById(R.id.signout);
+        /*signout = (Button)findViewById(R.id.signout);
 
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
             }
-        });
+        });*/
     }
 
     public static Bitmap getBitmapFromURL(String src) {
@@ -171,4 +232,13 @@ public class MainActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+    @Override
+    public void onBackPressed() {
+        if (circleMenu.isOpened())
+            circleMenu.closeMenu();
+        else
+            finish();
+
+    }
+
 }
