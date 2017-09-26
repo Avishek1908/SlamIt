@@ -2,6 +2,7 @@ package com.example.bhargavbv.ureon;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +28,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import static android.R.attr.name;
 
 public class LoginActivity extends AppCompatActivity {
@@ -48,11 +48,11 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private SignInButton signInButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         mAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference();
         user = mAuth.getCurrentUser();
