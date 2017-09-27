@@ -16,10 +16,9 @@
         >
 
         <ImageView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:src="@drawable/edit2"
             android:layout_marginLeft="10dp"
             />
         <TextView
@@ -47,10 +46,9 @@
         >
 
         <ImageView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:src="@drawable/about2"
             android:layout_marginLeft="10dp"
 
 
@@ -82,8 +80,12 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:src="@drawable/signout2"
             android:layout_marginLeft="10dp"
+
+
+
+
             />
         <TextView
             android:id="@+id/signout"
@@ -93,6 +95,10 @@
             android:textColor="#000000"
             android:textSize="40dp"
             android:layout_marginLeft="15dp"
+
+
             />
+
+
     </LinearLayout>
 </LinearLayout>

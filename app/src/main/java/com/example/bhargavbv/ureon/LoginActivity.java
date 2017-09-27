@@ -1,5 +1,6 @@
 package com.example.bhargavbv.ureon;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     private String photo;
     private Uri photoUri;
 
+    private ProgressDialog pdialog;
 
 
     private static final int RC_SIGN_IN = 1;
@@ -56,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference();
         user = mAuth.getCurrentUser();
+
+
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -86,6 +90,8 @@ public class LoginActivity extends AppCompatActivity {
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                 .build();
 
+
+
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,12 +117,14 @@ public class LoginActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
+
                 firebaseAuthWithGoogle(account);
 
 
@@ -129,8 +137,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
             } else {
+
+               // pdialog.dismiss();
                 // Google Sign In failed, update UI appropriately
                 // ...
+                Toast.makeText(LoginActivity.this,"Failed",Toast.LENGTH_SHORT).show();
             }
         }
     }

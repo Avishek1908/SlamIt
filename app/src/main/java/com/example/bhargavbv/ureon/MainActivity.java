@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 .addSubMenu(Color.parseColor("#30A400"), R.mipmap.points)
                 .addSubMenu(Color.parseColor("#FF4B32"), R.mipmap.challenge)
                 .addSubMenu(Color.parseColor("#8A39FF"), R.mipmap.settings)
-                .addSubMenu(Color.parseColor("#FF6A00"), R.mipmap.notification)
+                .addSubMenu(Color.parseColor("#FF6A00"), R.mipmap.settings)
                 .addSubMenu(Color.parseColor("#FF6A00"), R.mipmap.discover);
 
 
@@ -91,11 +91,11 @@ public class MainActivity extends AppCompatActivity {
                                                          case 2:
                                                              Toast.makeText(MainActivity.this, "challenge button Clciked", Toast.LENGTH_SHORT).show();
                                                              break;
-                                                         case 3:
+                                                         case 5:
                                                              Toast.makeText(MainActivity.this, "Setting button Clcked", Toast.LENGTH_SHORT).show();
-                                                             //startActivity(new Intent(MainActivity.this, ThankYouActivity.class));
+                                                             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                                                              break;
-                                                         case 4:
+                                                         case 3:
                                                              Toast.makeText(MainActivity.this, "notify button Clicked", Toast.LENGTH_SHORT).show();
                                                              break;
                                                      }
