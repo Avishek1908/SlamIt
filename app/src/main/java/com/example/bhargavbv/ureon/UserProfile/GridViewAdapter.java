@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bhargavbv.ureon.R;
 import com.example.bhargavbv.ureon.models.UserPosts;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -51,8 +53,14 @@ public class GridViewAdapter extends BaseAdapter {
         {
             convertView= LayoutInflater.from(c).inflate(R.layout.user_profile_grid_model,parent,false);
         }
+        ImageView imgView = (ImageView)convertView.findViewById(R.id.imageView);
         TextView nameTxt= (TextView) convertView.findViewById(R.id.tvcaption);
         final UserPosts s= (UserPosts) this.getItem(position);
+        Picasso.with(c)
+                .load(s.getImgUrl())
+                .resize(100, 100) // here you resize your image to whatever width and height you like
+                .into(imgView);
+
         nameTxt.setText(s.getCaption());
 
         convertView.setOnClickListener(new View.OnClickListener() {
