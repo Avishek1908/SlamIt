@@ -9,12 +9,12 @@
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
-        android:layout_height="151dp"
+        android:layout_height="251dp"
         android:layout_marginTop="0dp"
         app:srcCompat="@mipmap/profilepic"/>
 
     <Button
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/videoView"
         android:id="@+id/button"
         android:layout_marginLeft="125dp"
         android:layout_width="wrap_content"

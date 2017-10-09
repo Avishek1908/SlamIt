@@ -46,7 +46,8 @@ public class VideoActivity extends AppCompatActivity {
         if(resultCode==RESULT_OK &&  requestCode == PICK_VIDEO){
             videoUri = data.getData ();
             videoView.setVideoURI(videoUri);
-
+            videoView.requestFocus();
+            videoView.start();
         }
     }
 }
