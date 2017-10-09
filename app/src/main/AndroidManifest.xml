@@ -27,7 +27,8 @@
         </activity>
         <activity android:name=".SettingsActivity" />
         <activity android:name=".UserProfile.ProfileActivity" />
-        <activity android:name=".UserProfile.EditProfileActivity"></activity>
+        <activity android:name=".UserProfile.EditProfileActivity" />
+        <activity android:name=".UserProfile.VideoActivity"></activity>
     </application>
 
 </manifest>
