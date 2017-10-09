@@ -26,8 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".UserProfile.ProfileActivity" />
+        <activity android:name=".UserProfile.EditProfileActivity"></activity>
     </application>
 
 </manifest>

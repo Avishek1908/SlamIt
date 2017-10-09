@@ -1,4 +1,4 @@
-package com.example.bhargavbv.ureon;
+package com.example.bhargavbv.ureon.UserProfile;
 
         import android.content.ContentResolver;
         import android.content.Intent;
@@ -17,6 +17,7 @@ package com.example.bhargavbv.ureon;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import com.example.bhargavbv.ureon.R;
         import com.google.android.gms.tasks.OnCompleteListener;
         import com.google.android.gms.tasks.OnFailureListener;
         import com.google.android.gms.tasks.OnSuccessListener;

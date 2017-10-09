@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    tools:context=".UserProfile.ProfileActivity">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,7 +15,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:paddingTop="16dp"
-        tools:context=".ProfileActivity"
+        tools:context=".UserProfile.ProfileActivity"
         android:id="@+id/rel1"
         >
 
@@ -63,18 +63,15 @@
 
     </RelativeLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rel1">
+
 
         <GridView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numColumns="3"
+            android:layout_below="@+id/rel1"
+            android:id="@+id/gv"/>
 
-        </GridView>
-
-    </ScrollView>
     <com.hitomi.cmlibrary.CircleMenu
         android:id="@+id/circle_menu"
         android:layout_width="500dp"

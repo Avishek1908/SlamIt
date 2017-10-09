@@ -1,4 +1,4 @@
-package com.example.bhargavbv.ureon;
+package com.example.bhargavbv.ureon.models;
 
 /**
  * Created by BhargavBV on 25-09-2017.

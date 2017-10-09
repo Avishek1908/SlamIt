@@ -1,4 +1,4 @@
-package com.example.bhargavbv.ureon;
+package com.example.bhargavbv.ureon.UserProfile;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,15 +7,18 @@ import android.os.Bundle;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bhargavbv.ureon.MainActivity;
+import com.example.bhargavbv.ureon.R;
+import com.example.bhargavbv.ureon.SettingsActivity;
+import com.example.bhargavbv.ureon.models.ProfileInfo;
+import com.example.bhargavbv.ureon.models.UserPosts;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -38,6 +42,8 @@ public class ProfileActivity extends AppCompatActivity {
     CircleMenu circleMenu;
     ImageView img;
     TextView name;
+    private GridView gv;
+    private GridViewAdapter gvadapter;
 
     private FirebaseAuth mAuth;
     private DatabaseReference ref;
@@ -47,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
     String name1;
     String photo1;
 
-
+    private ArrayList<UserPosts> userposts;
     private static final String TAG = "ProfileActivity";
 
     @Override
@@ -60,6 +66,9 @@ public class ProfileActivity extends AppCompatActivity {
         circleMenu = (CircleMenu) findViewById(R.id.circle_menu);
         img = (ImageView)findViewById(R.id.button);
         name = (TextView)findViewById(R.id.name);
+        gv = (GridView)findViewById(R.id.gv);
+
+
 
         circleMenu.setMainMenu(Color.parseColor("#CDCDCD"), R.mipmap.add, R.mipmap.remove);
         circleMenu.addSubMenu(Color.parseColor("#258CFF"), R.mipmap.profile)
@@ -134,6 +143,34 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
+
+
+        userposts = new ArrayList<>();
+
+        ref.child("users").child(uid).child("posts").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot userPostSnapshot : dataSnapshot.getChildren())
+                {
+                    Log.i(TAG,userPostSnapshot.toString());
+                    UserPosts userpost = userPostSnapshot.getValue(UserPosts.class);
+                    userposts.add(userpost);
+                    //gvadapter.notifyDataSetChanged();
+                }
+                gvadapter = new GridViewAdapter(getApplicationContext(),userposts);
+                gv.setAdapter(gvadapter);
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                    Log.i(TAG,databaseError.getDetails());
+            }
+        });
+
+
+
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
