@@ -1,4 +1,4 @@
-package com.example.bhargavbv.ureon.UserProfile;
+package com.example.bhargavbv.ureon.UploadVideo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
