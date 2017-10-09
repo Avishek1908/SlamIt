@@ -110,6 +110,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void openGallery(){
         Intent gallery = new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        gallery.setType("image/*");
         startActivityForResult(gallery,PICK_IMAGE);
     }
     @Override

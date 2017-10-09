@@ -27,8 +27,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static android.R.attr.data;
 import static android.R.attr.name;
 
 public class LoginActivity extends AppCompatActivity {
@@ -45,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private ProgressDialog pdialog;
 
+    private ProfileInfo pf;
 
     private static final int RC_SIGN_IN = 1;
     private static final String TAG = "MainActivity";
@@ -157,14 +163,31 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
+
+
                             FirebaseUser user = mAuth.getCurrentUser();
 
                             assert user != null;
-                            String uid = user.getUid();
+                            final String uid = user.getUid();
 
-                            ref.child("users").child(uid).child("email").setValue(email);
-                            ref.child("users").child(uid).child("name").setValue(name);
-                            ref.child("users").child(uid).child("photo").setValue(photo);
+                            ref.child("users").child(uid).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                     pf = dataSnapshot.getValue(ProfileInfo.class);
+
+                                    if (pf.getName()==null) {
+                                        ref.child("users").child(uid).child("email").setValue(email);
+                                        ref.child("users").child(uid).child("name").setValue(name);
+                                        ref.child("users").child(uid).child("photo").setValue(photo);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
