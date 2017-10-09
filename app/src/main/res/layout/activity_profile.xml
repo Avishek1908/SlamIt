@@ -57,7 +57,7 @@
             android:id="@+id/name"
             android:layout_width="200dp"
             android:layout_height="70dp"
-            android:text="name of the user "
+            android:text="username "
             android:layout_marginTop="170dp"
             android:layout_marginLeft="70dp"
             android:textSize="30dp"
