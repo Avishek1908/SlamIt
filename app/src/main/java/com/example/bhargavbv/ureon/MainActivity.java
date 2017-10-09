@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bhargavbv.ureon.UploadVideo.VideoActivity;
 import com.example.bhargavbv.ureon.UserProfile.ProfileActivity;
 import com.example.bhargavbv.ureon.models.ProfileInfo;
 import com.hitomi.cmlibrary.CircleMenu;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                                                              startActivity(new Intent(MainActivity.this,ProfileActivity.class));
                                                              break;
                                                          case 1:
-                                                             Toast.makeText(MainActivity.this, "upload button Clicked", Toast.LENGTH_SHORT).show();
+                                                             startActivity(new Intent(MainActivity.this, VideoActivity.class));
                                                              break;
                                                          case 2:
                                                              Toast.makeText(MainActivity.this, "challenge button Clciked", Toast.LENGTH_SHORT).show();
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                                                          case 3:
                                                              Toast.makeText(MainActivity.this, "notify button Clicked", Toast.LENGTH_SHORT).show();
                                                              break;
+
                                                      }
                                                  }
                                              }
