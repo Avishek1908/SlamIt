@@ -164,17 +164,21 @@ public class LoginActivity extends AppCompatActivity {
 
                             assert user != null;
                             final String uid = user.getUid();
+                            ref.child("users").child(uid).child("email").setValue(email);
+                            ref.child("users").child(uid).child("name").setValue(name);
+                            ref.child("users").child(uid).child("photo").setValue(photo);
+
 
                             ref.child("users").child(uid).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                      pf = dataSnapshot.getValue(ProfileInfo.class);
 
-                                    if (pf.getName()==null) {
+
                                         ref.child("users").child(uid).child("email").setValue(email);
                                         ref.child("users").child(uid).child("name").setValue(name);
                                         ref.child("users").child(uid).child("photo").setValue(photo);
-                                    }
+
                                 }
 
                                 @Override
