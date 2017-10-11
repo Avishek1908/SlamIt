@@ -164,9 +164,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             assert user != null;
                             final String uid = user.getUid();
-                            ref.child("users").child(uid).child("email").setValue(email);
-                            ref.child("users").child(uid).child("name").setValue(name);
-                            ref.child("users").child(uid).child("photo").setValue(photo);
 
 
                             ref.child("users").child(uid).addValueEventListener(new ValueEventListener() {
@@ -175,10 +172,15 @@ public class LoginActivity extends AppCompatActivity {
                                      pf = dataSnapshot.getValue(ProfileInfo.class);
 
 
+                                    if (dataSnapshot.hasChild("photo")) {
+                                        Log.i(TAG,"ALready logged in");
+                                    }
+                                    else
+                                    {
                                         ref.child("users").child(uid).child("email").setValue(email);
                                         ref.child("users").child(uid).child("name").setValue(name);
                                         ref.child("users").child(uid).child("photo").setValue(photo);
-
+                                    }
                                 }
 
                                 @Override

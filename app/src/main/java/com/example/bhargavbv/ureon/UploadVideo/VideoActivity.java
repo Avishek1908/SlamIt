@@ -80,7 +80,7 @@ public class VideoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 new AsyncCaller().execute();
-                //uploadtask();
+
             }
         });
         }
@@ -126,9 +126,7 @@ public class VideoActivity extends AppCompatActivity {
         return result;
     }
 
-    private void uploadtask(){
 
-    }
 
     public class AsyncCaller extends AsyncTask<Void, Void, Void>
     {
@@ -161,12 +159,12 @@ public class VideoActivity extends AppCompatActivity {
             assert user!=null;
             UID = user.getUid();
 
-            /*sref.child("videos").child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(System.currentTimeMillis()+filepath.substring(filepath.lastIndexOf(".")+1,filepath.length())).putFile(videoUri)
+            sref.child("videos").child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(System.currentTimeMillis()+filepath.substring(filepath.lastIndexOf(".")+1,filepath.length())).putFile(videoUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Uri downloadUrl1 = taskSnapshot.getDownloadUrl();
-                            //dref.child("users").setValue(downloadUrl1);
+                            dref.child("users").child(UID).child("posts").child(dref.push().getKey().toString()).child("imgUrl").setValue(downloadUrl1.toString());
                             Log.i(TAG,downloadUrl1.toString());
                         }
                     })
@@ -175,7 +173,7 @@ public class VideoActivity extends AppCompatActivity {
                         public void onFailure(@NonNull Exception e) {
                             Log.i(TAG,e.toString());
                         }
-                    });*/
+                    });
 
             sref.child("Thumbnails").child(System.currentTimeMillis() + ".jpg").putBytes(imagethumb)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

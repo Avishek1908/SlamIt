@@ -58,7 +58,7 @@ public class GridViewAdapter extends BaseAdapter {
         final UserPosts s= (UserPosts) this.getItem(position);
         Picasso.with(c)
                 .load(s.getImgUrl())
-                .resize(100, 100) // here you resize your image to whatever width and height you like
+                //.resize(100, 100) // here you resize your image to whatever width and height you like
                 .into(imgView);
 
         nameTxt.setText(s.getCaption());

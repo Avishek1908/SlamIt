@@ -158,6 +158,9 @@ public class ProfileActivity extends AppCompatActivity {
                     //gvadapter.notifyDataSetChanged();
                 }
                 gvadapter = new GridViewAdapter(getApplicationContext(),userposts);
+                int gridWidth = getResources().getDisplayMetrics().widthPixels;
+                int imageWidth = gridWidth/3;
+                gv.setColumnWidth(imageWidth);
                 gv.setAdapter(gvadapter);
 
 
