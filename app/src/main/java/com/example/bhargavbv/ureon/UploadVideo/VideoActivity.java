@@ -128,7 +128,7 @@ public class VideoActivity extends AppCompatActivity {
 
 
 
-    public class AsyncCaller extends AsyncTask<Void, Void, Void>
+    public class AsyncCaller extends AsyncTask<Void, Integer,Void >
     {
         ProgressDialog pdLoading = new ProgressDialog(VideoActivity.this);
 
@@ -146,7 +146,7 @@ public class VideoActivity extends AppCompatActivity {
             //this method will be running on background thread so don't update UI frome here
             //do your long running http tasks here,you dont want to pass argument and u can access the parent class' variable url over here
 
-
+            pdLoading.show();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bmThumbnail.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             byte[] imagethumb = baos.toByteArray();
@@ -164,7 +164,7 @@ public class VideoActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Uri downloadUrl1 = taskSnapshot.getDownloadUrl();
-                            dref.child("users").child(UID).child("posts").child(dref.push().getKey().toString()).child("imgUrl").setValue(downloadUrl1.toString());
+                            //dref.child("users").child(UID).child("posts").child(dref.push().getKey().toString()).child("imgUrl").setValue(downloadUrl1.toString());
                             Log.i(TAG,downloadUrl1.toString());
                         }
                     })
@@ -204,6 +204,10 @@ public class VideoActivity extends AppCompatActivity {
             //this method will be running on UI thread
 
             pdLoading.dismiss();
+        }
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            pdLoading.setProgress(10);
         }
 
     }

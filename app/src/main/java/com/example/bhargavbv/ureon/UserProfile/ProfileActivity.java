@@ -155,14 +155,16 @@ public class ProfileActivity extends AppCompatActivity {
                     Log.i(TAG,userPostSnapshot.toString());
                     UserPosts userpost = userPostSnapshot.getValue(UserPosts.class);
                     userposts.add(userpost);
-                    //gvadapter.notifyDataSetChanged();
+
                 }
-                gvadapter = new GridViewAdapter(getApplicationContext(),userposts);
+
                 int gridWidth = getResources().getDisplayMetrics().widthPixels;
+                int gridHeigth = getResources().getDisplayMetrics().heightPixels;
                 int imageWidth = gridWidth/3;
+                gvadapter = new GridViewAdapter(getApplicationContext(),userposts,imageWidth,gridHeigth);
                 gv.setColumnWidth(imageWidth);
                 gv.setAdapter(gvadapter);
-
+                gvadapter.notifyDataSetChanged();
 
             }
 

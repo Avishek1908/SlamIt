@@ -24,11 +24,14 @@ import static android.support.constraint.R.id.parent;
 
 public class GridViewAdapter extends BaseAdapter {
 
+    int ImageWidth,ImageHeigth;
     Context c;
     ArrayList<UserPosts> userposts;
 
-    public GridViewAdapter(Context c, ArrayList<UserPosts> userposts)
+    public GridViewAdapter(Context c, ArrayList<UserPosts> userposts, int ImageWidth,int ImageHeigth)
     {
+        this.ImageHeigth = ImageHeigth;
+        this.ImageWidth = ImageWidth;
         this.c = c;
         this.userposts = userposts;
     }
@@ -58,7 +61,7 @@ public class GridViewAdapter extends BaseAdapter {
         final UserPosts s= (UserPosts) this.getItem(position);
         Picasso.with(c)
                 .load(s.getImgUrl())
-                //.resize(100, 100) // here you resize your image to whatever width and height you like
+                .resize(ImageWidth,300 ) // here you resize your image to whatever width and height you like
                 .into(imgView);
 
         nameTxt.setText(s.getCaption());
@@ -67,7 +70,7 @@ public class GridViewAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //OPEN DETAIL
-                Toast.makeText(c,s.getCaption(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(c,s.getImgUrl(),Toast.LENGTH_SHORT).show();
             }
         });
         return convertView;
