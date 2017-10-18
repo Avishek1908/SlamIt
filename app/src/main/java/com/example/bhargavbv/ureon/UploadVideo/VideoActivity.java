@@ -204,11 +204,13 @@ public class VideoActivity extends AppCompatActivity {
             //this method will be running on UI thread
 
             pdLoading.dismiss();
+            startActivity(new Intent(VideoActivity.this,CaptionActivity.class));
         }
         @Override
         protected void onProgressUpdate(Integer... values) {
             pdLoading.setProgress(10);
         }
+
 
     }
 }

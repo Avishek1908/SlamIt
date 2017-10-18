@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bhargavbv.ureon.UploadVideo.CaptionActivity">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="#90CAF9"
+
+     />
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="160dp"
+        android:text="Write a caption....."
+        android:textSize="18dp"
+        android:textColor="#757575"/>
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="180dp"
+        android:text="  Location"
+        android:textColor="#757575"
+
+        android:textSize="30dp"/>
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+
+
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="170dp"
+
+        android:src="@mipmap/location"
+            />
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="18dp"
+        android:background="#D32F2F"
+        android:text="#SLAM IT"
+        android:textSize="34dp"/>
+
+
+
+
+
+
+</RelativeLayout>

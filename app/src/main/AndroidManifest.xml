@@ -3,8 +3,9 @@
     package="com.example.bhargavbv.ureon">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -29,7 +30,14 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".UserProfile.ProfileActivity" />
         <activity android:name=".UserProfile.EditProfileActivity" />
-        <activity android:name=".UploadVideo.VideoActivity"></activity>
+        <activity android:name=".UploadVideo.VideoActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".UploadVideo.CaptionActivity"></activity>
     </application>
 
 </manifest>
