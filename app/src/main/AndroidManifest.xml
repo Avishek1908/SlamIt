@@ -28,7 +28,16 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".UserProfile.ProfileActivity" />
         <activity android:name=".UserProfile.EditProfileActivity" />
-        <activity android:name=".UserProfile.VideoActivity"></activity>
+        <activity android:name=".UserProfile.VideoActivity" />
+        <activity
+            android:name=".Challenges.ChallengeActivity"
+            android:label="@string/title_activity_challenge">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

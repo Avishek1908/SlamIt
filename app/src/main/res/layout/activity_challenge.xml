@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bhargavbv.ureon.Challenges.ChallengeActivity">
+
+    <TextView
+        android:layout_width="1000dp"
+        android:layout_height="75dp"
+        android:text="   Trending Challenges of the week
+                    Good Luck!"
+        android:textColor="#000"
+
+        android:background="#607D8B"
+        android:textSize="25dp"/>
+    <Button
+        android:id="@+id/more"
+        android:layout_width="1000dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="490dp"
+        android:text="More"
+        android:textSize="20dp"
+        android:layout_alignParentBottom="true"
+        android:background="#424242"
+        />
+    <Button
+        android:id="@+id/ff1"
+
+        android:layout_width="1000dp"
+        android:layout_height="75dp"
+
+        android:layout_marginTop="420dp"
+        android:text="#Freestyle Football"
+        android:textSize="20dp"
+        android:background="#FF5722"
+        />
+    <Button
+        android:id="@+id/pg1"
+
+        android:layout_width="1000dp"
+        android:layout_height="75dp"
+
+        android:layout_marginTop="490dp"
+        android:text="#ProGaming"
+        android:textSize="20dp"
+        android:background="#D32F2F"
+        />
+    <Button
+        android:id="@+id/bd1"
+        android:layout_width="1000dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="350dp"
+        android:text="#BreakDance"
+        android:textSize="20dp"
+        android:background="#FFA000"
+        />
+    <Button
+        android:layout_width="1000dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="280dp"
+        android:text="#PaperToss"
+        android:textSize="20dp"
+        android:background="#0D47A1"
+        />
+
+    <Button
+        android:layout_width="1000dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="210dp"
+        android:text="#Parkour"
+        android:textSize="20dp"
+        android:background="#00897B"
+        />
+
+    <Button
+        android:layout_width="1000dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="145dp"
+        android:text="#BottleFlip"
+        android:textSize="20dp"
+        android:background="#18FFFF"
+        />
+
+
+
+
+    <Button
+        android:id="@+id/bt1"
+        android:layout_width="1000dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="75dp"
+        android:text="#JumpingInTimeTrap"
+        android:textSize="20dp"
+        android:background="#1E88E5"
+        />
+
+
+
+</RelativeLayout>
