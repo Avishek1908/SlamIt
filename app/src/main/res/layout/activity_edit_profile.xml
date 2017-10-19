@@ -12,10 +12,6 @@
         android:layout_height="151dp"
         android:layout_marginTop="16dp"
         app:srcCompat="@mipmap/profilepic"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="asdasdasdasdadsadddddfsdfsdfsdfsdfsdfsdfsfsdfsfddddddddddddddassdasdasdasdasdasdsad"/>
 
     <Button
         android:layout_below="@+id/imageView"
@@ -23,6 +19,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select New DP" />
+    <Button
+        android:layout_below="@+id/button"
+        android:id="@+id/setnewdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set as dp" />
 
 
 </RelativeLayout>
