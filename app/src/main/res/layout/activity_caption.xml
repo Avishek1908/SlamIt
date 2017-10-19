@@ -21,12 +21,11 @@
         android:hint="Write a Caption..."
         android:textSize="18dp"
         android:textColor="#757575"/>
-    <EditText
+    <TextView
         android:layout_width="150dp"
-        android:id="@+id/Edittxt"
+        android:id="@+id/textView"
         android:layout_height="60dp"
         android:layout_marginTop="180dp"
-        android:text="Location"
         android:textColor="#757575"
 
         android:textSize="30dp"/>
