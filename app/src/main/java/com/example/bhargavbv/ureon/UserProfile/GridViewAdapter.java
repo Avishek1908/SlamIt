@@ -57,9 +57,9 @@ public class GridViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView==null)
         {
-            convertView= LayoutInflater.from(c).inflate(R.layout.user_profile_grid_model,parent,false);
+            convertView= LayoutInflater.from(c).inflate(R.layout.user_video_grid_image,parent,false);
         }
-        ImageView imgView = (ImageView)convertView.findViewById(R.id.imageView);
+        ImageView imgView = (ImageView)convertView.findViewById(R.id.image_grid);
         //TextView nameTxt= (TextView) convertView.findViewById(R.id.tvcaption);
         final UserPosts s= (UserPosts) this.getItem(position);
         Picasso.with(c)
