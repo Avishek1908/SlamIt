@@ -68,7 +68,7 @@ public class CaptionActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case 10:
-                if (grantResults.length > 10 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                if(grantResults.length>10&&grantResults[0]==PackageManager.PERMISSION_GRANTED)
                     configureImageButton();
                 return;
 
@@ -85,7 +85,7 @@ public class CaptionActivity extends AppCompatActivity {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                textView.append("\n " + location.getLatitude() + "" + location.getLongitude());
+                textView.append("\n "+location.getLatitude()+""+location.getLongitude());
 
             }
 
@@ -101,18 +101,18 @@ public class CaptionActivity extends AppCompatActivity {
 
             @Override
             public void onProviderDisabled(String s) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                Intent intent =new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(intent);
 
             }
         };
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{
                         Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.INTERNET
 
-                }, 10);
+                }, 10 );
                 return;
             } else {
                 configureImageButton();
@@ -120,11 +120,19 @@ public class CaptionActivity extends AppCompatActivity {
         }
 
 
+
+
+
+
+
+
+
+
         mAuth = FirebaseAuth.getInstance();
         sref = FirebaseStorage.getInstance().getReference();
         dref = FirebaseDatabase.getInstance().getReference();
         user = mAuth.getCurrentUser();
-        assert user != null;
+        assert user!=null;
         UID = user.getUid();
         pushkey = dref.push().getKey().toString();
 
@@ -135,15 +143,16 @@ public class CaptionActivity extends AppCompatActivity {
 
         bmThumbnail = ThumbnailUtils.createVideoThumbnail(filepath, MediaStore.Video.Thumbnails.MINI_KIND);
 
-        Button slamit = (Button) findViewById(R.id.slamit);
-        etcaptions = (EditText) findViewById(R.id.etcaptions);
-        iv = (ImageView) findViewById(R.id.ivthumbnail);
+        Button slamit = (Button)findViewById(R.id.slamit);
+        etcaptions = (EditText)findViewById(R.id.etcaptions);
+        iv = (ImageView)findViewById(R.id.ivthumbnail);
+
 
 
         slamit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (etcaptions.getText().toString() != null)
+                if(etcaptions.getText().toString()!=null)
                     dref.child("users").child(UID).child("posts").child(pushkey).child("caption").setValue(etcaptions.getText().toString());
                 new AsyncCaller().execute();
             }
@@ -156,20 +165,11 @@ public class CaptionActivity extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ActivityCompat.checkSelfPermission(CaptionActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CaptionActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
                 locationManager.requestLocationUpdates("gps", 5000, 100, locationListener);
 
             }
         });
+
 
     }
 
