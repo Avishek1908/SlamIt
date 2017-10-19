@@ -13,7 +13,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.VideoView;
-import android.media.AudioManager;
+
+//PLEASE IGNORE THIS LINE
 
 
 public class RecordVideo extends AppCompatActivity {
