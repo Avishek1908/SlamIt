@@ -6,7 +6,11 @@ package com.example.bhargavbv.ureon.models;
 
 public class UserPosts {
 
-    String caption,imgUrl;
+    String caption;
+    String imgUrl;
+
+
+    String videoUrl;
 
     public UserPosts(){
 
@@ -27,4 +31,13 @@ public class UserPosts {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
 }

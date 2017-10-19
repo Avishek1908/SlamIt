@@ -38,6 +38,7 @@
         </intent-filter>
         </activity>
         <activity android:name=".UploadVideo.CaptionActivity"></activity>
+        <activity android:name=".UploadVideo.ViewVideoActivity"/>
     </application>
 
 </manifest>

@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser user;
 
-    String name1;
-    String photo1;
 
     CircleMenu circleMenu;
 
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                                                  public void onMenuSelected(int index) {
                                                      switch (index) {
                                                          case 0:
-                                                             startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                                                             startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                                                              break;
                                                          case 1:
                                                              startActivity(new Intent(MainActivity.this, VideoActivity.class));
@@ -118,9 +116,6 @@ public class MainActivity extends AppCompatActivity {
         );
 
 
-        name = (TextView)findViewById(R.id.name);
-        photo = (ImageView)findViewById(R.id.photo);
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -128,9 +123,8 @@ public class MainActivity extends AppCompatActivity {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() == null)
-                {
-                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                if (firebaseAuth.getCurrentUser() == null) {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }
             }
         };
@@ -138,82 +132,8 @@ public class MainActivity extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance().getReference();
         user = mAuth.getCurrentUser();
 
-        assert  user!=null;
-        String uid = user.getUid();
-        ref.child("users").child(uid).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    ProfileInfo info = dataSnapshot.getValue(ProfileInfo.class);
-                    name1 = info.getName();
-                    photo1 = info.getPhoto();
-                    Log.i(TAG,info.getName()+info.getPhoto());
-                photo.setImageBitmap(getBitmapFromURL(photo1));
-                name.setText(name1);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-        //Uri uri = Uri.parse(photo1);
-
-
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        // [END config_signin]
-
-        mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
-                .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
-                    @Override
-                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                        Toast.makeText(MainActivity.this,"Connection Failed",Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
-                .build();
-
-        /*signout = (Button)findViewById(R.id.signout);
-
-        signout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAuth.signOut();
-
-                Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                        new ResultCallback<Status>() {
-                            @Override
-                            public void onResult(@NonNull Status status) {
-                                //updateUI(null);
-                            }
-                        });
-            }
-        });*/
     }
 
-    public static Bitmap getBitmapFromURL(String src) {
-        try {
-            Log.i(TAG,src);
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            //Log.e("Bitmap","returned");
-            return myBitmap;
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("Exception",e.getMessage());
-            return null;
-        }
-    }
 
     @Override
     protected void onResume() {

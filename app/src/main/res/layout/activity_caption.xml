@@ -7,16 +7,18 @@
     tools:context="com.example.bhargavbv.ureon.UploadVideo.CaptionActivity">
 
     <ImageView
+        android:id="@+id/ivthumbnail"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="#90CAF9"
 
      />
     <EditText
+        android:id="@+id/etcaptions"
         android:layout_width="250dp"
         android:layout_height="150dp"
         android:layout_marginLeft="160dp"
-        android:text="Write a caption....."
+        android:hint="Write a Caption..."
         android:textSize="18dp"
         android:textColor="#757575"/>
     <TextView
@@ -39,6 +41,7 @@
         android:src="@mipmap/location"
             />
     <Button
+        android:id="@+id/slamit"
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:layout_marginTop="300dp"

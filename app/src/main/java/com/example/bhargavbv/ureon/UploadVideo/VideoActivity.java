@@ -52,8 +52,8 @@ public class VideoActivity extends AppCompatActivity {
     Bitmap bmThumbnail;
     public String filepath,UID;
     StorageReference sref;
-
     private FirebaseAuth mAuth;
+
 
     private static final String TAG = "VideoActivity";
 
@@ -79,8 +79,7 @@ public class VideoActivity extends AppCompatActivity {
         videoupload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AsyncCaller().execute();
-
+                captions();
             }
         });
         }
@@ -99,7 +98,7 @@ public class VideoActivity extends AppCompatActivity {
             videoView.requestFocus();
             videoView.start();
 
-            ImageView iv = (ImageView )findViewById(R.id.imageView);
+            //ImageView iv = (ImageView )findViewById(R.id.imageView);
             /*ContentResolver crThumb = getContentResolver();
             BitmapFactory.Options options=new BitmapFactory.Options();
             options.inSampleSize = 1;
@@ -109,7 +108,7 @@ public class VideoActivity extends AppCompatActivity {
             filepath = getRealPathFromURI(videoUri);
             Log.i(TAG,filepath);
             bmThumbnail = ThumbnailUtils.createVideoThumbnail(filepath, MediaStore.Video.Thumbnails.MINI_KIND);
-            iv.setImageBitmap(bmThumbnail);
+            //iv.setImageBitmap(bmThumbnail);
             Log.i(TAG,videoUri.toString());
 
 
@@ -127,92 +126,17 @@ public class VideoActivity extends AppCompatActivity {
     }
 
 
+    private void captions(){
 
-    public class AsyncCaller extends AsyncTask<Void, Integer,Void >
-    {
-        ProgressDialog pdLoading = new ProgressDialog(VideoActivity.this);
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.show();
-        }
-        @Override
-        protected Void doInBackground(Void... params) {
-
-            //this method will be running on background thread so don't update UI frome here
-            //do your long running http tasks here,you dont want to pass argument and u can access the parent class' variable url over here
-
-            pdLoading.show();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bmThumbnail.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] imagethumb = baos.toByteArray();
-
-            sref = FirebaseStorage.getInstance().getReference();
-            dref = FirebaseDatabase.getInstance().getReference();
-
-            FirebaseUser user = mAuth.getCurrentUser();
-
-            assert user!=null;
-            UID = user.getUid();
-
-            sref.child("videos").child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(System.currentTimeMillis()+filepath.substring(filepath.lastIndexOf(".")+1,filepath.length())).putFile(videoUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Uri downloadUrl1 = taskSnapshot.getDownloadUrl();
-                            //dref.child("users").child(UID).child("posts").child(dref.push().getKey().toString()).child("imgUrl").setValue(downloadUrl1.toString());
-                            Log.i(TAG,downloadUrl1.toString());
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.i(TAG,e.toString());
-                        }
-                    });
-
-            sref.child("Thumbnails").child(System.currentTimeMillis() + ".jpg").putBytes(imagethumb)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            // Get a URL to the uploaded content
-                            Uri downloadUrl2 = taskSnapshot.getDownloadUrl();
-                            dref.child("users").child(UID).child("posts").child(dref.push().getKey().toString()).child("imgUrl").setValue(downloadUrl2.toString());
-                            //dref.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("posts").child(dref.push().getKey()).child("imgUrl").setValue(downloadUrl);
-                            Log.i(TAG,downloadUrl2.toString());
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle unsuccessful uploads
-                            // ...
-                            Log.i(TAG,exception.toString());
-                        }
-                    });
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            //this method will be running on UI thread
-
-            pdLoading.dismiss();
-            startActivity(new Intent(VideoActivity.this,CaptionActivity.class));
-        }
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            pdLoading.setProgress(10);
-        }
-
-
+        Intent intent = new Intent(VideoActivity.this,CaptionActivity.class);
+        intent.putExtra("imageFilePath",filepath);
+        intent.putExtra("videoFilePath",videoUri.toString());
+        //Log.i(TAG,getIntent().getStringExtra("videoFilePath").toString());
+        startActivity(intent);
     }
+
+
+
 }
 
 
