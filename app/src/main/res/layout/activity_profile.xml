@@ -17,7 +17,8 @@
         android:paddingTop="16dp"
         tools:context=".UserProfile.ProfileActivity"
         android:id="@+id/rel1"
-        >
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
 
 

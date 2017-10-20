@@ -7,7 +7,12 @@
     tools:context="com.example.bhargavbv.ureon.MainActivity"
     android:orientation="vertical">
 
-
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recview"
+        android:padding="5dp">
+    </android.support.v7.widget.RecyclerView>
 
     <com.hitomi.cmlibrary.CircleMenu
         android:id="@+id/circle_menu"
