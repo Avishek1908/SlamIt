@@ -1,6 +1,6 @@
 package com.example.bhargavbv.ureon;
-
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,7 +19,6 @@ import java.util.List;
  */
 
 public class MainRecycleAdapter extends RecyclerView.Adapter<MainRecycleAdapter.ViewHolder> {
-
 
     private Context c;
     private List<UserPosts> models;
@@ -55,6 +54,12 @@ public class MainRecycleAdapter extends RecyclerView.Adapter<MainRecycleAdapter.
 
         holder.videoView.setVideoPath(model.getVideoUrl());
         holder.videoView.start();
+        holder.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
 
     }
 
