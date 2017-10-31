@@ -32,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
+
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -127,16 +128,10 @@ public class LoginActivity extends AppCompatActivity {
                 GoogleSignInAccount account = result.getSignInAccount();
 
                 firebaseAuthWithGoogle(account);
-
-
                 name = account.getDisplayName();
                 email = account.getEmail();
                 photoUri = account.getPhotoUrl();
                 photo = photoUri.toString();
-
-
-
-
             } else {
 
                // pdialog.dismiss();
