@@ -1,6 +1,6 @@
 package com.example.bhargavbv.ureon.UserProfile;
 
-        import android.content.ContentResolver;
+import android.content.ContentResolver;
         import android.content.Intent;
         import android.net.Uri;
         import android.provider.MediaStore;
