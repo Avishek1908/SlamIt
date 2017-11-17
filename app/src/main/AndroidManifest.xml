@@ -39,6 +39,7 @@
         </activity>
         <activity android:name=".UploadVideo.CaptionActivity"></activity>
         <activity android:name=".UploadVideo.ViewVideoActivity"/>
+        <activity android:name=".RecordVideo"/>
     </application>
 
 </manifest>

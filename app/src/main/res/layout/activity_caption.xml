@@ -22,33 +22,56 @@
         android:textSize="18dp"
         android:textColor="#757575"/>
     <TextView
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="180dp"
-        android:text="  Location"
-        android:textColor="#757575"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose your category :-"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:layout_below="@id/ivthumbnail"
+        android:layout_marginTop="15dp"/>
 
-        android:textSize="30dp"/>
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivthumbnail"
+        android:layout_marginTop="55dp">
 
-    <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sports"
+            android:id="@+id/sports"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dance"
+            android:id="@+id/dance"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Music"
+            android:id="@+id/music"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rap Battle"
+            android:id="@+id/rap"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quick Challenges"
+            android:id="@+id/quick"/>
 
-
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="170dp"
-
-        android:src="@mipmap/location"
-            />
+    </RadioGroup>
     <Button
         android:id="@+id/slamit"
         android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="18dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
         android:background="#D32F2F"
         android:text="#SLAM IT"
-        android:textSize="34dp"/>
+        android:textSize="34dp" />
 
 
 

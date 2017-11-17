@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recview);
         recyclerView.setHasFixedSize(true);
+        recyclerView.stopScroll();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ref = FirebaseDatabase.getInstance().getReference();

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.bhargavbv.ureon.R;
@@ -41,8 +42,11 @@ public class CaptionActivity extends AppCompatActivity {
     private String pushkey;
     Bitmap bmThumbnail;
 
+    RadioButton sports,dance,music,quick,rap;
+
     EditText etcaptions;
     ImageView iv;
+    ProgressDialog pdLoading;
 
     Boolean cap = false;
 
@@ -60,10 +64,17 @@ public class CaptionActivity extends AppCompatActivity {
         UID = user.getUid();
         pushkey = dref.push().getKey().toString();
 
+        sports = (RadioButton)findViewById(R.id.sports);
+        music = (RadioButton)findViewById(R.id.music);
+        dance = (RadioButton)findViewById(R.id.dance);
+        quick = (RadioButton)findViewById(R.id.quick);
+        rap = (RadioButton)findViewById(R.id.rap);
 
         filepath = getIntent().getStringExtra("imageFilePath");
         videoUri = Uri.parse(getIntent().getStringExtra("videoFilePath"));
         //Log.i(TAG,getIntent().getStringExtra("videoFilePath").toString());
+
+        pdLoading = new ProgressDialog(CaptionActivity.this);
 
         bmThumbnail = ThumbnailUtils.createVideoThumbnail(filepath, MediaStore.Video.Thumbnails.MINI_KIND);
 
@@ -78,6 +89,7 @@ public class CaptionActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(etcaptions.getText().toString()!=null)
                     dref.child("users").child(UID).child("posts").child(pushkey).child("caption").setValue(etcaptions.getText().toString());
+                pdLoading.setMessage("Helloo");
                 new AsyncCaller().execute();
             }
         });
@@ -89,14 +101,12 @@ public class CaptionActivity extends AppCompatActivity {
 
     public class AsyncCaller extends AsyncTask<Void, Integer,Void >
     {
-        ProgressDialog pdLoading = new ProgressDialog(CaptionActivity.this);
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
             //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
             pdLoading.show();
         }
         @Override
@@ -122,6 +132,41 @@ public class CaptionActivity extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Uri downloadUrl1 = taskSnapshot.getDownloadUrl();
                             dref.child("users").child(UID).child("posts").child(pushkey).child("videoUrl").setValue(downloadUrl1.toString());
+                            if(sports.isChecked())
+                            {
+                                dref.child("posts").child(pushkey).child("uid").setValue(UID);
+                                dref.child("posts").child(pushkey).child("videoUrl").setValue(downloadUrl1.toString());
+                                dref.child("category").child("sports").child(pushkey).child("uid").setValue(UID);
+                                dref.child("category").child("sports").child(pushkey).child("videoUrl").setValue(downloadUrl1.toString());
+                            }
+                            if(rap.isChecked())
+                            {
+                                dref.child("posts").child(pushkey).child("uid").setValue(UID);
+                                dref.child("posts").child(pushkey).child("videoUrl").setValue(downloadUrl1.toString());
+                                dref.child("category").child("rap").child(pushkey).child("uid").setValue(UID);
+                                dref.child("category").child("rap").child(pushkey).child("videoUrl").setValue(downloadUrl1.toString());
+                            }
+                            if(dance.isChecked())
+                            {
+                                dref.child("posts").child(pushkey).child("uid").setValue(UID);
+                                dref.child("posts").child(pushkey).child("videoUrl").setValue(downloadUrl1.toString());
+                                dref.child("category").child("dance").child(pushkey).child("uid").setValue(UID);
+                                dref.child("category").child("dance").child(pushkey).child("videoUrl").setValue(downloadUrl1.toString());
+                            }
+                            if(music.isChecked())
+                            {
+                                dref.child("posts").child(pushkey).child("uid").setValue(UID);
+                                dref.child("posts").child(pushkey).child("videoUrl").setValue(downloadUrl1.toString());
+                                dref.child("category").child("music").child(pushkey).child("uid").setValue(UID);
+                                dref.child("category").child("music").child(pushkey).child("videoUrl").setValue(downloadUrl1.toString());
+                            }
+                            if(quick.isChecked())
+                            {
+                                dref.child("posts").child(pushkey).child("uid").setValue(UID);
+                                dref.child("posts").child(pushkey).child("videoUrl").setValue(downloadUrl1.toString());
+                                dref.child("category").child("quick").child(pushkey).child("uid").setValue(UID);
+                                dref.child("category").child("quick").child(pushkey).child("videoUrl").setValue(downloadUrl1.toString());
+                            }
                             Log.i(TAG,downloadUrl1.toString());
                         }
                     })
@@ -141,6 +186,41 @@ public class CaptionActivity extends AppCompatActivity {
                             dref.child("users").child(UID).child("posts").child(pushkey).child("imgUrl").setValue(downloadUrl2.toString());
                             //dref.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("posts").child(dref.push().getKey()).child("imgUrl").setValue(downloadUrl);
                             Log.i(TAG,downloadUrl2.toString());
+                            if(sports.isChecked())
+                            {
+                                dref.child("posts").child(pushkey).child("uid").setValue(UID);
+                                dref.child("posts").child(pushkey).child("imgUrl").setValue(downloadUrl2.toString());
+                                dref.child("category").child("sports").child(pushkey).child("uid").setValue(UID);
+                                dref.child("category").child("sports").child(pushkey).child("imgUrl").setValue(downloadUrl2.toString());
+                            }
+                            if(rap.isChecked())
+                            {
+                                dref.child("posts").child(pushkey).child("uid").setValue(UID);
+                                dref.child("posts").child(pushkey).child("imgUrl").setValue(downloadUrl2.toString());
+                                dref.child("category").child("rap").child(pushkey).child("uid").setValue(UID);
+                                dref.child("category").child("rap").child(pushkey).child("imgUrl").setValue(downloadUrl2.toString());
+                            }
+                            if(dance.isChecked())
+                            {
+                                dref.child("posts").child(pushkey).child("uid").setValue(UID);
+                                dref.child("posts").child(pushkey).child("imgUrl").setValue(downloadUrl2.toString());
+                                dref.child("category").child("dance").child(pushkey).child("uid").setValue(UID);
+                                dref.child("category").child("dance").child(pushkey).child("imgUrl").setValue(downloadUrl2.toString());
+                            }
+                            if(music.isChecked())
+                            {
+                                dref.child("posts").child(pushkey).child("uid").setValue(UID);
+                                dref.child("posts").child(pushkey).child("imgUrl").setValue(downloadUrl2.toString());
+                                dref.child("category").child("music").child(pushkey).child("uid").setValue(UID);
+                                dref.child("category").child("music").child(pushkey).child("imgUrl").setValue(downloadUrl2.toString());
+                            }
+                            if(quick.isChecked())
+                            {
+                                dref.child("posts").child(pushkey).child("uid").setValue(UID);
+                                dref.child("posts").child(pushkey).child("imgUrl").setValue(downloadUrl2.toString());
+                                dref.child("category").child("quick").child(pushkey).child("uid").setValue(UID);
+                                dref.child("category").child("quick").child(pushkey).child("imgUrl").setValue(downloadUrl2.toString());
+                            }
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -160,6 +240,7 @@ public class CaptionActivity extends AppCompatActivity {
 
             //this method will be running on UI thread
 
+            Toast.makeText(CaptionActivity.this,"Done",Toast.LENGTH_LONG).show();
             pdLoading.dismiss();
             //startActivity(new Intent(VideoActivity.this,CaptionActivity.class));
         }

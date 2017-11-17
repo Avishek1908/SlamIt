@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.bhargavbv.ureon.R;
+import com.example.bhargavbv.ureon.RecordVideo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -57,6 +59,7 @@ public class VideoActivity extends AppCompatActivity {
     StorageReference sref;
     private FirebaseAuth mAuth;
 
+    static final int REQUEST_VIDEO_CAPTURE = 1;
 
     private static final String TAG = "VideoActivity";
 
@@ -122,6 +125,15 @@ public class VideoActivity extends AppCompatActivity {
 
 
         }
+        if(requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK){
+            videoUri = data.getData();
+            videoView.setVideoURI(videoUri);
+            filepath = getRealPathFromURI(videoUri);
+            Log.i(TAG,filepath);
+            bmThumbnail = ThumbnailUtils.createVideoThumbnail(filepath, MediaStore.Video.Thumbnails.MINI_KIND);
+            //iv.setImageBitmap(bmThumbnail);
+            Log.i(TAG,videoUri.toString());
+        }
     }
     private String getRealPathFromURI(Uri contentUri) {
         String[] proj = { MediaStore.Images.Media.DATA };
@@ -149,10 +161,31 @@ public class VideoActivity extends AppCompatActivity {
 
         switch (item.getItemId())
         {
-            case R.id.camera:
+            case R.id.camera: videocapture();
+
+                videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+
+                        mediaPlayer.setLooping(true);
+
+                        videoView.start();
+                    }
+                });
+                              return true;
+            default:return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+
     }
+
+     void videocapture()
+    {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        if(cameraIntent.resolveActivity(getPackageManager())!= null)
+            startActivityForResult(cameraIntent,REQUEST_VIDEO_CAPTURE);
+
+    }
+
 }
 
 
